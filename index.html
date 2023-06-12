@@ -164,6 +164,42 @@
         
 
 <div class="post">
+    <a href="/2023/06/12/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97/">
+        <h2 class="post-title">第一次修改日志</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/12
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <ul>
+<li>修改keystore的读取，由&lt;sftp服务器获取&gt;到&lt;本地读取&gt;，接下来的目标是&lt;数据库读取&gt;。</li>
+<li>CA吊销证书时，传输到RA的Https请求出错的BUG修复，<code>String AjaxRes = HttpClientUtil.doPost( addr, raLogOutPath, sJson);</code>该函数的<code>addr</code>前缺少了<code>&quot;https://&quot;</code>。</li>
+<li>redis和Mysql数据库改到本地运行。</li>
+<li>CA对应的RA地址改到本地。</li>
+<li>RA的前端BUG修改。main.js中的<code>*Vue.prototype.GLOBAL = global_*</code>出现BUG，注释掉即可解除一直转圈的状态。</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2023/06/12/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/06/11/mytest/">
         <h2 class="post-title">mytest</h2>
     </a>

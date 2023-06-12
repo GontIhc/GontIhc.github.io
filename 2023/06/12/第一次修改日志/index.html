@@ -3,7 +3,7 @@
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8" />
-        <title>Archives | 李云龙的个人博客</title>
+        <title>第一次修改日志 | 李云龙的个人博客</title>
         <meta name="author" content="李云龙" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -27,6 +27,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -141,54 +145,38 @@
 
             <transition name="into">
                 <div id="main" v-show="!loading">
-                    
-<div id="archives">
-    
-    <div id="timeline-wrap" ref="timeline">
+                    <div class="article">
+    <div>
+        <h1>第一次修改日志</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/12
+        </span>
         
-        <div class="timeline" data-title="my-first-blog">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/6/11</div>
-                <a href="/2023/06/11/my-first-blog/">
-                    <h3>my-first-blog</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="mytest">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/6/11</div>
-                <a href="/2023/06/11/mytest/">
-                    <h3>mytest</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="第一次修改日志">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/6/12</div>
-                <a href="/2023/06/12/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97/">
-                    <h3>第一次修改日志</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
         
     </div>
+    
+    <div class="content" v-pre>
+        <ul>
+<li>修改keystore的读取，由&lt;sftp服务器获取&gt;到&lt;本地读取&gt;，接下来的目标是&lt;数据库读取&gt;。</li>
+<li>CA吊销证书时，传输到RA的Https请求出错的BUG修复，<code>String AjaxRes = HttpClientUtil.doPost( addr, raLogOutPath, sJson);</code>该函数的<code>addr</code>前缺少了<code>&quot;https://&quot;</code>。</li>
+<li>redis和Mysql数据库改到本地运行。</li>
+<li>CA对应的RA地址改到本地。</li>
+<li>RA的前端BUG修改。main.js中的<code>*Vue.prototype.GLOBAL = global_*</code>出现BUG，注释掉即可解除一直转圈的状态。</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
 </div>
 
                     <footer id="footer">
@@ -220,6 +208,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>
