@@ -164,6 +164,68 @@
         
 
 <div class="post">
+    <a href="/2023/06/14/Git%E5%8D%8F%E4%BD%9C%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">Git协作笔记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/6/14
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="Git学习笔记"><a href="#Git学习笔记" class="headerlink" title="Git学习笔记"></a>Git学习笔记</h3><h4 id="一、版本库-仓库-安装"><a href="#一、版本库-仓库-安装" class="headerlink" title="一、版本库(仓库)安装"></a>一、版本库(仓库)安装</h4><p>repository实质上就是一个文件夹，通过在文件夹里的命令<code>git intit</code>，把该文件里变为一个Git仓库，接着该文件夹里会出现一个隐藏的<code>.git</code>文件夹，这是<strong>Git仓库的标志</strong>，里面包含了Git版本控制的文件。</p>
+<h4 id="二、Git本地仓库"><a href="#二、Git本地仓库" class="headerlink" title="二、Git本地仓库"></a>二、Git本地仓库</h4><p>git是一个分布式的版本控制的软件，每个用户都有一个本地仓库，一般也会有一个存放最终版本的远程仓库     **(github就是最常用的远程仓库)**。</p>
+<p>对于<strong>本地仓库</strong>：我们修改或增加文件后，使用<code>git add</code>命令，提交文件到本地仓库的<strong>stage</strong>中，再通过<code>commit</code>把修改提交到<strong>master</strong>中。至此才算改动了本地仓库的文件。值得一提的是，在<strong>IDEA</strong>中进行git协作时，Add操作是自动完成的，即修改文件后，会自动添加到stage中，只需执行<code>commit</code>操作即可完成本地仓库的改动，改动会显示在修改树上。(下图是三次commit，紫色的标签表示现在远程仓库的代码目前所处的状态)，</p>
+<img src="file:///C:/Users/GontIhc/Pictures/Typedown/5a2afe80-2327-4bfa-b774-8e20877040b5.png" title="" alt="5a2afe80-2327-4bfa-b774-8e20877040b5" style="zoom:80%;">
+
+<p><img src="file:///C:/Users/GontIhc/Pictures/Typedown/28119e46-2caa-46e2-972a-162d1606300b.png" alt="28119e46-2caa-46e2-972a-162d1606300b">HEAD是git中指向当前版本的指针(即当前IDEA中显示的代码所处的状态)，紫色的标签是远程仓库所处的状态(该远程仓库是main仓库的一个分支，可以通过<strong>merge pull requests</strong>把远程仓库的该分支合并到main仓库中)。绿色的标签是本地的dev_lyl仓库目前的状态，紫色的标签则是远程的dev_lyl所处的状态，origin就是远程仓库的意思(起源、开端)。(dev_lyl是远程仓库main的一个分支，当开发了一定的代码后，在远程仓库里可以通过<strong>merge pull requests</strong>来尝试把dev_lyl合并到main中)。</p>
+<h4 id="三、工作流"><a href="#三、工作流" class="headerlink" title="三、工作流"></a>三、工作流</h4><p>基本的工作流的过程是：写代码&#x2F;文件——&gt;Add到本地仓库的Stage区——&gt;commit到本地仓库的master——&gt;push到远程仓库的master——&gt;merge pull requests请求到main仓库。</p>
+<img src="https://img-blog.csdnimg.cn/20200416094725331.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxOTE5Njk0Njg4,size_16,color_FFFFFF,t_70" title="" alt="在这里插入图片描述" data-align="inline">
+
+<p><strong>stage</strong>：是本地仓库中的一个暂存区，文件可以通过<code>add</code> 命令放入stage</p>
+<p><strong>master</strong>：是git自动给我们创建的一个本地分支，修改的文件从stage中<code>commit</code>到master，这个master表示的是本地仓库的主分支，其实本地也有dev分支，我们的开发一般是在dev分支上的。</p>
+<p>实际的流程是这样的：</p>
+<ol>
+<li><p>在远程仓库里有：main分支(master分支)、dev分支(多个，每个开发者一个)</p>
+</li>
+<li><p>在个人的本地仓库有：自己的dev分支(当然也可以在本地pull其他人的dev，但是最重要的是自己的)、main(master)分支(从远程main中pull的)，这方便我们掌握主分支的状态。</p>
+</li>
+<li><p>提交：在本地的dev_lyl开发后(已经commmit)，再push到远程的dev_lyl，最后再远程仓库里进行merge push requests。</p>
+</li>
+</ol>
+<hr>
+<p>三、实际的工作流(以<strong>远哲</strong>的工作为例)</p>
+<ul>
+<li><p>local仓库存放两个分支：master和dev_lyl。前者用来同步remote仓库的master分支(这是存放项目文件的最核心的分支)，后者用来进行具体的需求代码开发。</p>
+</li>
+<li><p>在工作区完成代码后，使用commit提交修改的代码到dev_lyl分支上(修改的代码会被idea自动保存在stage区内)，接着要把dev_lyl同步到master分支上，最后把local的master分支合并到remote的master上。</p>
+</li>
+<li><p>rebase(变基)和merge(合并)：<img src="C:\Users\GontIhc\AppData\Roaming\Typora\typora-user-images\image-20230614111258104.png" alt="image-20230614111258104"></p>
+<p>图中的两句话最终的效果是一样的，merge很好理解，就是把dev_lyl合并到master中，<strong>操作的对象是dev_lyl</strong>。rebase的意思是在msaster分内中把dev_lyl做过的操作再做一遍，<strong>操作的对象是 master</strong>。</p>
+</li>
+<li><p>最后，通过push把local的master合并到remote的master上。</p>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2023/06/14/Git%E5%8D%8F%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/06/12/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97/">
         <h2 class="post-title">第一次修改日志</h2>
     </a>
